@@ -1,8 +1,13 @@
+import Layout from './components/Layout';
+import URLRoutes from './URLRoutes';
+
 const App = () => {
   return (
-    <div className="App">
-      <div>초기입니다</div>
-    </div>
+    <>
+      <Layout>
+        <URLRoutes />
+      </Layout>
+    </>
   );
 };
 

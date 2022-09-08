@@ -1,9 +1,15 @@
 import styles from './layout.module.scss';
 
-const Layout = () => {
+interface ILayout {
+  children: JSX.Element;
+}
+
+const Layout = ({ children }: ILayout) => {
   return (
-    <div>
-      <div>하이</div>
+    <div className={styles.layoutBackground}>
+      <div className={styles.layoutMain}>{children}</div>
     </div>
   );
 };
+
+export default Layout;

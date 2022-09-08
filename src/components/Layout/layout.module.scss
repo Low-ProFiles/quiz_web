@@ -1,0 +1,13 @@
+@use '../../styles/colors.scss' as color;
+
+.layoutBackground {
+  display: flex;
+  background-color: color.$GREY;
+
+  .layoutMain {
+    width: 375px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: color.$WHITE;
+  }
+}
