@@ -17,6 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "~pages/*": ["src/pages/*"],
+      "~assets/*": ["src/assets/svgs*"],
       "~routes/*": ["src/routes/*"],
       "~components/*": ["src/components/*"],
       "~/*": ["src/*"]

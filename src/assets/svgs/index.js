@@ -1,0 +1,1 @@
+export { ReactComponent as Character } from './character.svg';
