@@ -1,0 +1,28 @@
+/* stylelint-disable scss/no-global-function-names */
+@use '../../styles/colors.scss' as color;
+
+.button {
+  color: color.$WHITE;
+  background-color: color.$GREEN;
+  border: 0;
+  border-radius: 15px;
+
+  &.large {
+    width: 256px;
+    height: 48px;
+  }
+
+  &.small {
+    width: 128px;
+    height: 36px;
+  }
+
+  &:hover {
+    background: lighten(color.$GREEN, 10%);
+  }
+
+  &:disabled {
+    color: color.$BLACK;
+    background-color: color.$GREY;
+  }
+}

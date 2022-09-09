@@ -15,13 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "paths": {
-      "~pages/*": ["src/pages/*"],
-      "~assets/*": ["src/assets/svgs*"],
-      "~routes/*": ["src/routes/*"],
-      "~components/*": ["src/components/*"],
-      "~/*": ["src/*"]
-    }
+    "baseUrl": "src"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"]
+  "include": ["src"]
 }
