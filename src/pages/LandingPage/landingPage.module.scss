@@ -1,0 +1,17 @@
+.landingPage {
+  display: grid;
+  place-items: center;
+
+  .landingLogo {
+    margin-top: 70%;
+  }
+
+  .landingText {
+    margin-top: 7%;
+    font-size: 1rem;
+  }
+
+  .landingButton {
+    margin-top: 7%;
+  }
+}
