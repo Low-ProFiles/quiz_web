@@ -1,0 +1,34 @@
+@use '../../styles/colors.scss' as color;
+
+.quizIndex {
+  display: flex;
+  justify-content: center;
+  float: left;
+  width: 100px;
+  margin-top: 60%;
+}
+
+.quizTitle {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  font-size: 1.25rem;
+}
+
+.quizTimeBar {
+  width: 80%;
+  margin: 4% auto 0;
+  background-color: color.$GREEN;
+}
+
+.quizItems {
+  display: table;
+  width: 80%;
+  margin: 4% auto 0;
+}
+
+.quizButton {
+  display: flex;
+  justify-content: center;
+  margin-top: 7%;
+}
