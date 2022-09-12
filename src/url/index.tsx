@@ -3,7 +3,7 @@ import LandingPage from '../pages/LandingPage';
 import QuizPage from '../pages/QuizPage';
 import ResultPage from '../pages/ResultPage';
 
-const URLRoutes = () => {
+const URL = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,4 +15,4 @@ const URLRoutes = () => {
   );
 };
 
-export default URLRoutes;
+export default URL;
