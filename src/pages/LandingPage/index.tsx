@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Character } from 'assets/svgs';
 import Button from 'components/Button';
+
 import styles from './landingPage.module.scss';
 
 const LandingPage = () => {
@@ -12,6 +13,7 @@ const LandingPage = () => {
       navigate('/quiz');
     }
   };
+
   return (
     <div className={styles.landingPage}>
       <div className={styles.landingLogo}>
