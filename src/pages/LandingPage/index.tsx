@@ -8,9 +8,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   const MovePage = () => {
-    console.log(location.pathname);
     if (location.pathname === '/') {
-      console.log('엥');
       navigate('/quiz');
     }
   };
