@@ -19,7 +19,7 @@ const Button = ({ children, size, disabled }: ButtonProps) => {
         navigate('/quiz');
         break;
       case '/quiz':
-        navigate('result');
+        navigate('/result');
         break;
       case '/result':
         navigate('/');

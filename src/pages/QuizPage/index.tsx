@@ -1,8 +1,13 @@
 import Button from 'components/Button';
 import QuizItem from 'components/QuizItem';
 import styles from './quizPage.module.scss';
+import { requestQuiz } from 'api/axios';
+import { useEffect } from 'react';
 
 const QuizPage = () => {
+  useEffect(() => {
+    requestQuiz();
+  });
   return (
     <>
       <p className={styles.quizIndex}>1/10</p>
