@@ -12,6 +12,6 @@ const score = createSlice({
 
 const store = configureStore({ reducer: score.reducer });
 
-export const { handleScore } = score.action;
+export const { handleScore } = score.actions;
 
 export default store;

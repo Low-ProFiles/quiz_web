@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
+
 import Button from 'components/Button';
 import QuizItem from 'components/QuizItem';
 import styles from './quizPage.module.scss';
 import { requestQuiz } from 'api/axios';
-import { useEffect } from 'react';
+
 
 const QuizPage = () => {
   useEffect(() => {
