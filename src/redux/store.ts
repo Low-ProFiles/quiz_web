@@ -1,17 +1,28 @@
 import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const score = createSlice({
-  name: 'scoreReducer',
-  initialState: [],
+interface QuizState {
+  score: number;
+  time: string;
+}
+
+const initialState: QuizState = {
+  score: 0,
+  time: '00:00',
+};
+
+const QuizSlice = createSlice({
+  name: 'quiz',
+  initialState,
   reducers: {
-    handleScore: (state: { score: any; }[], action: { payload: any; }) => {
-      state.push({ score: action.payload });
+    scoreHandler: state => {
+      state.score += 1;
+    },
+    timeHandler: state => {
+      state.time += state;
     },
   },
 });
 
-const store = configureStore({ reducer: score.reducer });
+export const { scoreHandler, timeHandler } = QuizSlice.actions;
 
-export const { handleScore } = score.actions;
-
-export default store;
+export default configureStore({ reducer: QuizSlice.reducer });

@@ -1,25 +1,26 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { scoreHandler, timeHandler } from 'redux/store';
+import { useNavigate } from 'react-router-dom';
+import { decode } from 'html-entities';
+
 import Button from 'components/Button';
 import QuizItem from 'components/QuizItem';
 import Axios from 'api/axios';
 import styles from './quizPage.module.scss';
-import { useState, useEffect } from 'react';
-import { handleScore } from 'redux/store';
-import { useNavigate } from 'react-router-dom';
-import { decode } from 'html-entities';
 
 const QuizPage = () => {
-  const score = useSelector<number>(state => state);
+  const [index, setIndex] = useState(0);
+  const [example, setExample] = useState<any[]>([]);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { response } = Axios();
-  const [index, setIndex] = useState(0);
-  const [example, setExample] = useState<any[]>([]);
 
   const submitAnswer = (e: any) => {
     const question = response[index];
     if (e.target.textContent === question.correct_answer) {
-      dispatch(handleScore((score as number) + 1));
+      dispatch(scoreHandler());
     }
     if (index + 1 < response.length) {
       setIndex(index + 1);
@@ -45,12 +46,7 @@ const QuizPage = () => {
       <p className={styles.quizIndex}>
         {index + 1}/{response?.length}
       </p>
-      <p
-        className={styles.quizTitle}
-        onClick={() => {
-          console.log(response[index].question);
-        }}
-      >
+      <p className={styles.quizTitle}>
         {index + 1}. {decode(response[index]?.question)}
       </p>
       <div className={styles.quizTimeBar}>Timebar</div>
