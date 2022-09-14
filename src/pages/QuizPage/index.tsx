@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { scoreHandler, timeHandler } from 'redux/store';
+import { scoreHandler } from 'redux/store';
 import { useNavigate } from 'react-router-dom';
 import { decode } from 'html-entities';
 
@@ -15,7 +15,7 @@ const QuizPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { response } = Axios();
+  const { response, loading } = Axios();
 
   const submitAnswer = (e: any) => {
     const question = response[index];
@@ -28,6 +28,7 @@ const QuizPage = () => {
       navigate('/result');
     }
   };
+
   useEffect(() => {
     if (response?.length) {
       const question = response[index];
@@ -43,23 +44,26 @@ const QuizPage = () => {
 
   return (
     <>
-      <p className={styles.quizIndex}>
-        {index + 1}/{response?.length}
-      </p>
-      <p className={styles.quizTitle}>
-        {index + 1}. {decode(response[index]?.question)}
-      </p>
-      <div className={styles.quizTimeBar}>Timebar</div>
-      <div className={styles.quizItems}>
-        {example.map(item => (
-          <QuizItem>{item}</QuizItem>
-        ))}
-      </div>
-      <div className={styles.quizButton}>
-        <Button size="small" onClick={submitAnswer}>
-          다음
-        </Button>
-      </div>
+      {loading ? null : (
+        <>
+          <p className={styles.quizIndex}>
+            {index + 1}/{response?.length}
+          </p>
+          <p className={styles.quizTitle}>
+            {index + 1}. {decode(response[index]?.question)}
+          </p>
+          <div className={styles.quizItems}>
+            {example.map(item => (
+              <QuizItem key={item}>{item}</QuizItem>
+            ))}
+          </div>
+          <div className={styles.quizButton}>
+            <Button size="small" onClick={submitAnswer}>
+              다음
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
 };

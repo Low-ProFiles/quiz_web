@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Character } from 'assets/svgs';
 import Button from 'components/Button';
-
 import styles from './landingPage.module.scss';
 
 const LandingPage = () => {
