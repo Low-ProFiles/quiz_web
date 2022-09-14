@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import styles from './quizItem.module.scss';
 
 type ItemProp = {
