@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { scoreHandler } from 'redux/store';
 import { useNavigate } from 'react-router-dom';
 import { decode } from 'html-entities';
+import { CircularProgress } from '@mui/material';
+import { Box } from '@mui/system';
 
 import Button from 'components/Button';
 import QuizItem from 'components/QuizItem';
@@ -44,7 +46,9 @@ const QuizPage = () => {
 
   return (
     <>
-      {loading ? null : (
+      {loading ? (
+        <span className={styles.quizLoading}>loading..</span>
+      ) : (
         <>
           <p className={styles.quizIndex}>
             {index + 1}/{response?.length}
