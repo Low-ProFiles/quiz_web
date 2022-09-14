@@ -1,16 +1,17 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Character } from 'assets/svgs';
 import Button from 'components/Button';
 import styles from './landingPage.module.scss';
+import { useDispatch } from 'react-redux';
+import { timeHandler } from 'redux/store';
 
 const LandingPage = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const MovePage = () => {
-    if (location.pathname === '/') {
-      navigate('/quiz');
-    }
+    dispatch(timeHandler());
+    navigate('/quiz');
   };
 
   return (

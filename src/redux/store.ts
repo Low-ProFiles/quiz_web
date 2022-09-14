@@ -2,12 +2,12 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 interface QuizState {
   score: number;
-  time: string;
+  time: any;
 }
 
 const initialState: QuizState = {
   score: 0,
-  time: '00:00',
+  time: [],
 };
 
 const QuizSlice = createSlice({
@@ -18,7 +18,7 @@ const QuizSlice = createSlice({
       state.score += 1;
     },
     timeHandler: state => {
-      state.time += state;
+      state.time.push(Date.now());
     },
   },
 });
