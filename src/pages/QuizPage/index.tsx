@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { scoreHandler } from 'redux/store';
 import { useNavigate } from 'react-router-dom';
 import { decode } from 'html-entities';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Button from 'components/Button';
 import QuizItem from 'components/QuizItem';
@@ -14,30 +16,41 @@ const QuizPage = () => {
   const [example, setExample] = useState<any[]>([]);
   const [disabled, setDisabled] = useState(true);
   const [answer, setAnswer] = useState<string>('');
-  const [buttonText, setButtonText] = useState('제출');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { response, loading } = Axios();
 
   const submitAnswer = (e: any) => {
-    const question = response[index];
-    if (e.target.innerHTML === '다음') {
-      if (e.target.textContent === question.correct_answer) {
-        dispatch(scoreHandler());
-      }
-      if (index + 1 < response.length) {
-        setIndex(index + 1);
-      } else {
-        navigate('/result');
-      }
+    if (response[index].correct_answer === answer) {
+      toast.success('정답입니다!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 500,
+        closeOnClick: true,
+        hideProgressBar: true,
+      });
+      dispatch(scoreHandler());
+      setTimeout(() => {
+        if (index + 1 < response.length) {
+          setIndex(index + 1);
+        } else {
+          navigate('/result');
+        }
+      }, 1000);
     } else {
-      if (response[index].correct_answer === answer) {
-        console.log('정답');
-      } else {
-        console.log('오답');
-      }
-      setButtonText('다음');
+      toast.error('오답입니다!', {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 500,
+        closeOnClick: true,
+        hideProgressBar: true,
+      });
+      setTimeout(() => {
+        if (index + 1 < response.length) {
+          setIndex(index + 1);
+        } else {
+          navigate('/result');
+        }
+      }, 1000);
     }
   };
 
@@ -56,7 +69,6 @@ const QuizPage = () => {
         question.correct_answer,
       );
       setDisabled(true);
-      setButtonText('제출');
       setExample(answers);
     }
   }, [response, index]);
@@ -67,6 +79,7 @@ const QuizPage = () => {
         <span className={styles.quizLoading}>loading..</span>
       ) : (
         <>
+          <ToastContainer />
           <p className={styles.quizIndex}>
             {index + 1}/{response?.length}
           </p>
@@ -75,14 +88,16 @@ const QuizPage = () => {
           </p>
           <div className={styles.quizItems}>
             {example.map(item => (
-              <QuizItem key={item} onClick={checkAnswer}>
-                {decode(item)}
-              </QuizItem>
+              <>
+                <QuizItem key={item} onClick={checkAnswer}>
+                  {decode(item)}
+                </QuizItem>
+              </>
             ))}
           </div>
           <div className={styles.quizButton}>
             <Button size="small" onClick={submitAnswer} disabled={disabled}>
-              {buttonText}
+              제출
             </Button>
           </div>
         </>
