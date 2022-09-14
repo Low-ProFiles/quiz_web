@@ -17,7 +17,7 @@
     height: 36px;
   }
 
-  &:hover {
+  &:active {
     background: lighten(color.$GREEN, 10%);
   }
 

@@ -1,11 +1,11 @@
 import Layout from './components/Layout';
-import URLRoutes from './URLRoutes';
+import URL from './url';
 
 const App = () => {
   return (
     <>
       <Layout>
-        <URLRoutes />
+        <URL />
       </Layout>
     </>
   );
