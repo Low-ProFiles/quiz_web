@@ -27,7 +27,6 @@ const QuizPage = () => {
   const submitAnswer = (e: React.MouseEvent<HTMLElement>) => {
     const eventTarget = e.target as HTMLElement;
     setItemDisabled(true);
-    console.log(e);
     if (eventTarget.innerText === '제출' && response[index].correct_answer === answer) {
       successToast('정답입니다!');
       setButtonText('다음');
