@@ -3,7 +3,7 @@ import styles from './quizItem.module.scss';
 type ItemProp = {
   children?: string;
   disabled?: boolean;
-  onClick: (e: any) => void;
+  onClick: (e: React.MouseEvent<HTMLElement>) => void;
 };
 
 const QuizItem = ({ children, onClick, disabled }: ItemProp) => {

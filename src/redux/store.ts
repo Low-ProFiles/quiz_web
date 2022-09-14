@@ -2,7 +2,7 @@ import { configureStore, createSlice } from '@reduxjs/toolkit';
 
 interface QuizState {
   score: number;
-  time: any;
+  time: number[];
 }
 
 const initialState: QuizState = {

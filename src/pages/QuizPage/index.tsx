@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { scoreHandler } from 'redux/store';
 import { useNavigate } from 'react-router-dom';
 import { decode } from 'html-entities';
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Button from 'components/Button';
@@ -14,7 +14,7 @@ import { errorToast, successToast } from 'components/Toast';
 
 const QuizPage = () => {
   const [index, setIndex] = useState(0);
-  const [example, setExample] = useState<any[]>([]);
+  const [example, setExample] = useState<string[]>([]);
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [itemDisabled, setItemDisabled] = useState(false);
   const [answer, setAnswer] = useState<string>('');
@@ -24,17 +24,19 @@ const QuizPage = () => {
   const navigate = useNavigate();
   const { response, loading } = Axios();
 
-  const submitAnswer = (e: any) => {
+  const submitAnswer = (e: React.MouseEvent<HTMLElement>) => {
+    const eventTarget = e.target as HTMLElement;
     setItemDisabled(true);
-    if (e.target.innerText === '제출' && response[index].correct_answer === answer) {
+    console.log(e);
+    if (eventTarget.innerText === '제출' && response[index].correct_answer === answer) {
       successToast('정답입니다!');
       setButtonText('다음');
       dispatch(scoreHandler());
-    } else if (e.target.innerText === '제출' && response[index].correct_answer !== answer) {
+    } else if (eventTarget.innerText === '제출' && response[index].correct_answer !== answer) {
       errorToast('오답입니다!');
       setButtonText('다음');
     }
-    if (e.target.innerText === '다음') {
+    if (eventTarget.innerText === '다음') {
       if (index + 1 < response.length) {
         setIndex(index + 1);
         setButtonText('제출');
@@ -44,9 +46,10 @@ const QuizPage = () => {
     }
   };
 
-  const checkAnswer = (e: any) => {
+  const checkAnswer = (e: React.MouseEvent<HTMLElement>) => {
+    const eventTarget = e.target as HTMLElement;
     setButtonDisabled(false);
-    setAnswer(e.target.outerText);
+    setAnswer(eventTarget.outerText);
   };
 
   useEffect(() => {
